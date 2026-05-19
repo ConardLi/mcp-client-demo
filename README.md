@@ -109,6 +109,32 @@ node build/index.js <服务器标识符> <配置文件路径>
 }
 ```
 
+如果想在本地 MCP 服务器收到工具调用之前增加一层安全检查，可以用
+[Armorer Guard](https://github.com/ArmorerLabs/Armorer-Guard) 包装原始命令：
+
+```json
+{
+  "mcpServers": {
+    "guarded-filesystem": {
+      "command": "armorer-guard",
+      "args": [
+        "mcp-proxy",
+        "--",
+        "npx",
+        "-y",
+        "@modelcontextprotocol/server-filesystem",
+        "/tmp"
+      ],
+      "description": "通过本地安全代理访问文件系统 MCP 服务器"
+    }
+  },
+  "defaultServer": "guarded-filesystem"
+}
+```
+
+这个代理会在本地检查 MCP `tools/call` 参数中的 prompt injection、凭据泄露、
+数据外传风险和危险操作，并只转发安全的调用。
+
 
 
 ### 3. 使用 npm 包（npx）
@@ -232,4 +258,3 @@ MCP Client 基于模块化的客户端-服务器架构：
 ## 许可证
 
 Apache License 2.0
-
