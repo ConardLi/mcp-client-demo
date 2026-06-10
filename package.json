@@ -18,6 +18,13 @@
     "client"
   ],
   "homepage": "https://github.com/ConardLi/mcp-client-nodejs",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/ConardLi/mcp-client-nodejs"
+  },
+  "bugs": {
+    "url": "https://github.com/ConardLi/mcp-client-nodejs/issues"
+  },
   "author": "ConardLi",
   "license": "Apache License 2.0",
   "dependencies": {
